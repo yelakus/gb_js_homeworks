@@ -1,19 +1,31 @@
 'use strict';
 
 const cart = {
-  goods: [
-    ['Яблоки', 100, 2], 
-    ['Шоколадка', 50, 3],
-    ['Молоко', 55, 1],
-    ['Мука', 30, 2],
-  ],
+  goods: {
+    Яблоки: {
+      price: 100,
+      quantity: 2,
+    },
+    Шоколадка: {
+      price: 50,
+      quantity: 3,
+    },
+    Молоко: {
+      price: 55,
+      quantity: 1,
+    },
+    Мука: {
+      price: 30,
+      quantity: 2,
+    },
+  },
   countBasketPrice() {
     let price = 0;
-    for (let i = 0; i < this.goods.length; i++) {
-      price += this.goods[i][1] * this.goods[i][2];
+    for (const prop in this.goods) {
+      price += (this.goods[prop].price * this.goods[prop].quantity);
     }
     return price;
-  }
+  },
 };
 
 console.log("Стоимость корзины: " + cart.countBasketPrice());
