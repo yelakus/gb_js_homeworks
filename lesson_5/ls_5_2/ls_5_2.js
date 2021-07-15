@@ -33,27 +33,25 @@ const cart = {
         }
         return q;
     },
-    emptyBasket(){
-        p.textContent += 'Ваша корзина пуста';
+    createHtmlElements(){
+        const containerElement = document.getElementById('cart');
+        const p = document.createElement('p');
+        containerElement.appendChild(p);
+        if (this.isEmpty(this.goods)){
+            p.textContent += 'Ваша корзина пуста';;
+        } else {
+            p.textContent += `В корзине: ${this.numberOfItemsInTheCart(this.goods)} товара на сумму ${this.countBasketPrice()} рублей `;;
+        }
     },
-    notEmptyBasket(){
-        p.textContent += `В корзине: ${this.numberOfItemsInTheCart(this.goods)} товара на сумму ${this.countBasketPrice()} рублей `;
-    }
+    isEmpty(obj) {
+        for (let key in obj) {
+            return false;
+        }
+        return true;
+    },
 };
 
-const containerElement = document.getElementById('cart');
-const p = document.createElement('p');
-containerElement.appendChild(p);
+cart.createHtmlElements()
 
-function isEmpty(obj) {
-    for (let key in obj) {
-        return false;
-    }
-    return true;
-}
 
-if (isEmpty(cart.goods)){
-    cart.emptyBasket();
-} else {
-    cart.notEmptyBasket();
-}
+
